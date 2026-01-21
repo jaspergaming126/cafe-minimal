@@ -362,8 +362,13 @@ export async function fetchAppConfig(): Promise<AppConfig> {
 
 export async function updateAppConfig(config: Partial<AppConfig>): Promise<boolean> {
     if (!isSupabaseConfigured) return false;
+    // Log the error for debugging
     const { error } = await supabase.from('app_config').upsert({ id: 1, ...config });
-    return !error;
+    if (error) {
+        console.error('Failed to update app_config:', error);
+        return false;
+    }
+    return true;
 }
 
 export async function updateThemeConfig(config: { primaryColor?: string; brandNameColor?: string; fontFamily?: string }): Promise<boolean> {
