@@ -1,5 +1,5 @@
 -- =====================================================
--- Café Minimal - Seed Data
+-- CRÈME.ge - Seed Data
 -- Run this AFTER the migration script to populate tables
 -- =====================================================
 

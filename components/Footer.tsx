@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
         </div>
 
         <p className="text-stone-300 dark:text-stone-600 text-[10px] mt-2 uppercase tracking-widest">
-          {appConfig.footer_text || `© ${new Date().getFullYear()} Café Minimal. All rights reserved.`}
+          {appConfig.footer_text || `© ${new Date().getFullYear()} CRÈME.ge. All rights reserved.`}
           <a href="/admin" className="ml-2 opacity-0 hover:opacity-50 transition-opacity">.</a>
         </p>
       </div>

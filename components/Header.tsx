@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({
   onSearchToggle,
   searchQuery,
   onSearchChange,
-  brandName = 'Café Minimal',
+  brandName = 'CRÈME.ge',
   showLogo = true,
   logoUrl
 }) => {

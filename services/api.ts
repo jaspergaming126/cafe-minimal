@@ -323,14 +323,14 @@ export async function updateCategoryOrder(categories: CategoryConfig[]): Promise
 export async function fetchAppConfig(): Promise<AppConfig> {
     if (!isSupabaseConfigured) {
         return {
-            brand_name: 'Café Minimal',
+            brand_name: 'CRÈME.ge',
             show_logo: true,
             logo_url: undefined,
             hero_message: 'Slow moments, fast memories.',
             show_hero_message: true,
             hero_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAgKYCGlRnEUypygIPNNU1z94BlZS-Dg4sP7WXICTk63X58y31l4hiGB3Ve6NLxNYV6HOu7GvZbvzGt5ggyeZ4vhckjaGdIywe9PtQdTwyBDqFXrbxDRP9ChDAYjRaX3a1CMopGDvlQhujG4K_eWvuElvWiaDyoX00E6mImijxecDGsQRetkqc-p2V7QWwgo_Oj-9Xyy4asklRhteUtgpYLfhwCPbfacwvMOTuJPksQTffIxI2Z54f1OdC9Wi93pBFlME50nBcLAY',
             font_size_base: 16,
-            footer_text: '© 2026 Café Minimal. All rights reserved.'
+            footer_text: '© 2026 CRÈME.ge. All rights reserved.'
         };
     }
 
@@ -338,14 +338,14 @@ export async function fetchAppConfig(): Promise<AppConfig> {
     if (error || !data) {
         // Fallback to defaults or theme_config if app_config doesn't exist
         return {
-            brand_name: 'Café Minimal',
+            brand_name: 'CRÈME.ge',
             show_logo: true,
             logo_url: undefined,
             hero_message: 'Slow moments, fast memories.',
             show_hero_message: true,
             hero_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAgKYCGlRnEUypygIPNNU1z94BlZS-Dg4sP7WXICTk63X58y31l4hiGB3Ve6NLxNYV6HOu7GvZbvzGt5ggyeZ4vhckjaGdIywe9PtQdTwyBDqFXrbxDRP9ChDAYjRaX3a1CMopGDvlQhujG4K_eWvuElvWiaDyoX00E6mImijxecDGsQRetkqc-p2V7QWwgo_Oj-9Xyy4asklRhteUtgpYLfhwCPbfacwvMOTuJPksQTffIxI2Z54f1OdC9Wi93pBFlME50nBcLAY',
             font_size_base: 16,
-            footer_text: '© 2026 Café Minimal. All rights reserved.'
+            footer_text: '© 2026 CRÈME.ge. All rights reserved.'
         };
     }
     return {
@@ -356,7 +356,7 @@ export async function fetchAppConfig(): Promise<AppConfig> {
         show_hero_message: data.show_hero_message,
         hero_image: data.hero_image,
         font_size_base: data.font_size_base,
-        footer_text: data.footer_text || '© 2026 Café Minimal. All rights reserved.'
+        footer_text: data.footer_text || '© 2026 CRÈME.ge. All rights reserved.'
     };
 }
 

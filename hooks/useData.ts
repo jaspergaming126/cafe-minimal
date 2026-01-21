@@ -166,7 +166,7 @@ export function useAddressConfig() {
 // Hook for fetching app configuration
 export function useAppConfig() {
     const [appConfig, setAppConfig] = useState<any>({
-        brand_name: 'Café Minimal',
+        brand_name: 'CRÈME.ge',
         show_logo: true,
         hero_message: 'Slow moments, fast memories.',
         show_hero_message: true,
