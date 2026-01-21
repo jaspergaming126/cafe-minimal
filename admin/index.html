@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "var(--color-primary, #e66e19)",
+                        "background-light": "#fdfcfb",
+                        "background-dark": "#211811",
+                        "stone-text": "#1b130e",
+                        "stone-light": "#976d4e",
+                    },
+                    fontFamily: {
+                        "display": ["var(--font-main)", "Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["var(--font-main)", "serif"],
+                        "sans": ["var(--font-main)", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary: #e66e19;
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-size-base: 16px;
+        }
+
+        body {
+            font-size: var(--font-size-base);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-stone-text font-display antialiased transition-colors duration-300">
+    <div id="root"></div>
+    <script type="module" src="/admin/main.tsx"></script>
+</body>
+
+</html>

@@ -2,8 +2,8 @@
 import { Product, CategoryConfig } from './types';
 
 export const THEME_CONFIG = {
-  primaryColor: '#e66e19', 
-  brandNameColor: '#1b130e', 
+  primaryColor: '#e66e19',
+  brandNameColor: '#1b130e',
   fontFamily: "'Plus Jakarta Sans', sans-serif", // Single font for the entire app
 };
 

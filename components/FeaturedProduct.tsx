@@ -9,11 +9,10 @@ interface FeaturedProductProps {
 
 const FeaturedProduct: React.FC<FeaturedProductProps> = ({ product, coldSurcharge }) => {
   const options = product.availableOptions || [];
-  const hasOptions = options.length > 1;
 
   const firstPrice = product.price;
-  const secondPrice = product.secondaryPrice !== undefined 
-    ? product.secondaryPrice 
+  const secondPrice = product.secondaryPrice !== undefined
+    ? product.secondaryPrice
     : (product.price + coldSurcharge);
 
   const formatPrice = (price: number) => Number(price.toFixed(2)).toString();
@@ -24,18 +23,18 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({ product, coldSurcharg
         {product.image ? (
           <>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10"></div>
-            <img 
-              alt={product.name} 
-              className="h-full w-full object-cover transform transition-transform duration-700 group-hover:scale-110" 
-              src={product.image} 
+            <img
+              alt={product.name}
+              className="h-full w-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+              src={product.image}
             />
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center p-12 text-center opacity-5">
-             <h4 className="font-serif text-[120px] font-bold uppercase tracking-tighter select-none">{product.category}</h4>
+            <h4 className="font-serif text-[120px] font-bold uppercase tracking-tighter select-none">{product.category}</h4>
           </div>
         )}
-        
+
         <div className={`absolute bottom-0 left-0 right-0 p-6 sm:p-8 z-20 flex flex-col justify-end ${!product.image ? 'relative h-full' : ''}`}>
           <div className="max-w-full mb-4">
             <h3 className={`${product.image ? 'text-white' : 'text-stone-text dark:text-white'} font-serif text-3xl sm:text-4xl font-bold mb-2`}>{product.name}</h3>
@@ -43,11 +42,16 @@ const FeaturedProduct: React.FC<FeaturedProductProps> = ({ product, coldSurcharg
               {product.description}
             </p>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            {!hasOptions ? (
-              <div className="bg-primary px-4 py-2 rounded-full shadow-lg">
-                <span className="text-white font-bold text-xs sm:text-sm whitespace-nowrap">RM {formatPrice(product.price)}</span>
+            {options.length <= 1 ? (
+              <div className="flex flex-col items-start">
+                {options[0] && (
+                  <span className={`text-[9px] ${product.image ? 'text-white/40' : 'text-primary/60'} font-bold uppercase tracking-widest mb-1 ml-1`}>{options[0]}</span>
+                )}
+                <div className="bg-primary px-4 py-2 rounded-full shadow-lg">
+                  <span className="text-white font-bold text-xs sm:text-sm whitespace-nowrap">RM {formatPrice(product.price)}</span>
+                </div>
               </div>
             ) : (
               <div className="flex gap-3 sm:gap-4">

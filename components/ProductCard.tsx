@@ -9,21 +9,25 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, coldSurcharge }) => {
   const options = product.availableOptions || [];
-  const hasOptions = options.length > 1;
 
   const firstPrice = product.price;
-  const secondPrice = product.secondaryPrice !== undefined 
-    ? product.secondaryPrice 
+  const secondPrice = product.secondaryPrice !== undefined
+    ? product.secondaryPrice
     : (product.price + coldSurcharge);
 
   const formatPrice = (price: number) => Number(price.toFixed(2)).toString();
 
   const priceLayout = (
     <div className="mt-auto pt-4">
-      {!hasOptions ? (
-        <span className="text-primary font-bold text-[11px] sm:text-[13px] uppercase tracking-wide whitespace-nowrap">
-          RM {formatPrice(product.price)}
-        </span>
+      {options.length <= 1 ? (
+        <div className="flex flex-col items-start">
+          {options[0] && (
+            <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-primary/60 mb-1">{options[0]}</span>
+          )}
+          <span className="text-primary font-bold text-[11px] sm:text-[13px] uppercase tracking-wide whitespace-nowrap">
+            RM {formatPrice(product.price)}
+          </span>
+        </div>
       ) : (
         <div className="flex gap-4 sm:gap-6">
           <div className="flex flex-col items-start">
@@ -60,10 +64,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, coldSurcharge }) => 
   return (
     <div className={`${cardClass} bg-stone-50 dark:bg-stone-900/40 border border-stone-100 dark:border-stone-800/60`}>
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone-200 dark:bg-stone-800">
-        <img 
-          alt={product.name} 
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" 
-          src={product.image} 
+        <img
+          alt={product.name}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          src={product.image}
         />
       </div>
       <div className="p-5 sm:p-6 flex flex-col flex-1">

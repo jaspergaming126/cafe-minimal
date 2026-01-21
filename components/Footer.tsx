@@ -1,10 +1,11 @@
 
 import React from 'react';
-import { useSocialConfig, useAddressConfig } from '../hooks/useData';
+import { useSocialConfig, useAddressConfig, useAppConfig } from '../hooks/useData';
 
 const Footer: React.FC = () => {
   const { socialConfig } = useSocialConfig();
   const { addressConfig } = useAddressConfig();
+  const { appConfig } = useAppConfig();
 
   return (
     <footer className="bg-transparent py-10 px-6 border-t border-stone-100 dark:border-stone-800/50">
@@ -51,7 +52,7 @@ const Footer: React.FC = () => {
         </div>
 
         <p className="text-stone-300 dark:text-stone-600 text-[10px] mt-2 uppercase tracking-widest">
-          © {new Date().getFullYear()} Café Minimal. All rights reserved.
+          {appConfig.footer_text || `© ${new Date().getFullYear()} Café Minimal. All rights reserved.`}
         </p>
       </div>
     </footer>

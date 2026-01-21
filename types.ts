@@ -4,9 +4,10 @@ export type CategoryId = string;
 export interface CategoryConfig {
   id: CategoryId;
   label: string;
+  sortOrder?: number;
 }
 
-export type ProductOption = 'Hot' | 'Cold' | 'Steamed' | 'Baked';
+export type ProductOption = string;
 
 export interface Product {
   id: string;

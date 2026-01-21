@@ -6,6 +6,7 @@ import {
     fetchThemeConfig,
     fetchSocialConfig,
     fetchAddressConfig,
+    fetchAppConfig,
     fetchAllConfig
 } from '../services/api';
 import { PRODUCTS, CATEGORIES, THEME_CONFIG, SOCIAL_CONFIG, ADDRESS_CONFIG } from '../constants';
@@ -162,18 +163,51 @@ export function useAddressConfig() {
     return { addressConfig, loading };
 }
 
+// Hook for fetching app configuration
+export function useAppConfig() {
+    const [appConfig, setAppConfig] = useState<any>({
+        brand_name: 'Café Minimal',
+        show_logo: true,
+        hero_message: 'Slow moments, fast memories.',
+        show_hero_message: true,
+        hero_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAgKYCGlRnEUypygIPNNU1z94BlZS-Dg4sP7WXICTk63X58y31l4hiGB3Ve6NLxNYV6HOu7GvZbvzGt5ggyeZ4vhckjaGdIywe9PtQdTwyBDqFXrbxDRP9ChDAYjRaX3a1CMopGDvlQhujG4K_eWvuElvWiaDyoX00E6mImijxecDGsQRetkqc-p2V7QWwgo_Oj-9Xyy4asklRhteUtgpYLfhwCPbfacwvMOTuJPksQTffIxI2Z54f1OdC9Wi93pBFlME50nBcLAY',
+        font_size_base: 16
+    });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        let isMounted = true;
+        fetchAppConfig()
+            .then(data => {
+                if (isMounted) setAppConfig(data);
+            })
+            .finally(() => {
+                if (isMounted) setLoading(false);
+            });
+        return () => { isMounted = false; };
+    }, []);
+
+    return { appConfig, loading };
+}
+
 // Combined hook for all app data
 export function useAppData() {
     const { products, loading: productsLoading, error: productsError } = useProducts();
     const { categories, loading: categoriesLoading } = useCategories();
     const { themeConfig, loading: themeLoading } = useThemeConfig();
+    const { appConfig, loading: appLoading } = useAppConfig();
+    const { socialConfig, loading: socialLoading } = useSocialConfig();
+    const { addressConfig, loading: addressLoading } = useAddressConfig();
 
-    const loading = productsLoading || categoriesLoading || themeLoading;
+    const loading = productsLoading || categoriesLoading || themeLoading || appLoading || socialLoading || addressLoading;
 
     return {
         products,
         categories,
         themeConfig,
+        appConfig,
+        socialConfig,
+        addressConfig,
         loading,
         error: productsError,
     };

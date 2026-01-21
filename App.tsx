@@ -15,7 +15,7 @@ const NAV_HEIGHT_OFFSET = 110;
 
 const App: React.FC = () => {
   // Use dynamic data from Supabase (with fallback to static data)
-  const { products: allProducts, categories, themeConfig, loading, error } = useAppData();
+  const { products: allProducts, categories, themeConfig, appConfig, loading, error } = useAppData();
 
   const [activeCategoryId, setActiveCategoryId] = useState<CategoryId>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -28,7 +28,8 @@ const App: React.FC = () => {
     document.documentElement.style.setProperty('--color-primary', themeConfig.primaryColor);
     document.documentElement.style.setProperty('--color-brand-name', themeConfig.brandNameColor);
     document.documentElement.style.setProperty('--font-main', themeConfig.fontFamily);
-  }, [themeConfig]);
+    document.documentElement.style.setProperty('--font-size-base', `${appConfig.font_size_base}px`);
+  }, [themeConfig, appConfig]);
 
   const visibleProducts = useMemo(() => {
     return allProducts.filter(p => p.isVisible !== false);
@@ -147,7 +148,7 @@ const App: React.FC = () => {
     <div className="flex min-h-screen flex-col items-center bg-background-light dark:bg-background-dark transition-colors duration-300">
       <div className="w-full max-w-[960px] flex flex-col min-h-screen bg-white/30 dark:bg-black/20 shadow-sm border-x border-stone-100 dark:border-stone-900">
         <section id="all" className="menu-section">
-          <Hero />
+          <Hero appConfig={appConfig} />
         </section>
 
         <Header
@@ -155,6 +156,9 @@ const App: React.FC = () => {
           onSearchToggle={handleSearchToggle}
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
+          brandName={appConfig.brand_name}
+          showLogo={appConfig.show_logo}
+          logoUrl={appConfig.logo_url}
         />
 
         <Navbar
