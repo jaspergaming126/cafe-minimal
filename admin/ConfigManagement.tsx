@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchAppConfig, fetchThemeConfig, updateAppConfig, updateThemeConfig, AppConfig, ThemeConfig } from '../services/api';
 import { uploadToR2 } from '../services/r2';
+import { isSupabaseConfigured } from '../lib/supabase';
 
 const ConfigManagement: React.FC = () => {
     const [appConfig, setAppConfig] = useState<AppConfig | null>(null);
@@ -25,19 +26,31 @@ const ConfigManagement: React.FC = () => {
     const handleAppSave = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!appConfig) return;
+
+        if (!isSupabaseConfigured) {
+            alert('Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your deployment environment variables.');
+            return;
+        }
+
         setSaving(true);
         const success = await updateAppConfig(appConfig);
         setSaving(false);
         if (success) {
             alert('Identity settings saved successfully!');
         } else {
-            alert('Failed to save Identity settings. Please check your connection.');
+            alert('Failed to save Identity settings. Please ensure you have run Migration 004.');
         }
     };
 
     const handleThemeSave = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!themeConfig) return;
+
+        if (!isSupabaseConfigured) {
+            alert('Supabase is not configured. Please add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to your deployment environment variables.');
+            return;
+        }
+
         setSaving(true);
         const success = await updateThemeConfig({
             primaryColor: themeConfig.primaryColor,
@@ -48,7 +61,7 @@ const ConfigManagement: React.FC = () => {
         if (success) {
             alert('Theme settings saved successfully!');
         } else {
-            alert('Failed to save Theme settings. Please check your connection.');
+            alert('Failed to save Theme settings. Please ensure Migration 004 is applied.');
         }
     };
 
