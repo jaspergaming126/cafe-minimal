@@ -47,15 +47,15 @@ const SocialManagement: React.FC = () => {
     if (loading) return <div className="flex justify-center py-20 animate-pulse text-stone-light">Loading contacts...</div>;
 
     return (
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-12">
             <div>
-                <h2 className="text-3xl font-serif font-bold text-stone-text dark:text-white">Social & Links</h2>
-                <p className="text-stone-light dark:text-stone-500 mt-1">Manage your online presence and store location.</p>
+                <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-text dark:text-white">Social & Links</h2>
+                <p className="text-sm text-stone-light dark:text-stone-500 mt-1">Manage your online presence and store location.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {/* Social Media */}
-                <div className="bg-white dark:bg-stone-900 rounded-[32px] p-8 border border-stone-100 dark:border-stone-800 space-y-6">
+                <div className="bg-white dark:bg-stone-900 rounded-[32px] p-6 md:p-8 border border-stone-100 dark:border-stone-800 space-y-6">
                     <h3 className="text-xl font-bold flex items-center gap-3">
                         <span className="material-symbols-outlined text-primary">public</span>
                         Social Media
@@ -70,7 +70,7 @@ const SocialManagement: React.FC = () => {
                                     type="text"
                                     value={social.instagram}
                                     onChange={(e) => setSocial({ ...social, instagram: e.target.value })}
-                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl pl-10 pr-4 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none"
+                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl pl-10 pr-4 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none dark:text-white"
                                     placeholder="https://instagram.com/..."
                                 />
                             </div>
@@ -84,7 +84,7 @@ const SocialManagement: React.FC = () => {
                                     type="text"
                                     value={social.facebook}
                                     onChange={(e) => setSocial({ ...social, facebook: e.target.value })}
-                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl pl-10 pr-4 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none"
+                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl pl-10 pr-4 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none dark:text-white"
                                     placeholder="https://facebook.com/..."
                                 />
                             </div>
@@ -101,7 +101,7 @@ const SocialManagement: React.FC = () => {
                 </div>
 
                 {/* Physical Address */}
-                <div className="bg-white dark:bg-stone-900 rounded-[32px] p-8 border border-stone-100 dark:border-stone-800 space-y-6">
+                <div className="bg-white dark:bg-stone-900 rounded-[32px] p-6 md:p-8 border border-stone-100 dark:border-stone-800 space-y-6">
                     <h3 className="text-xl font-bold flex items-center gap-3">
                         <span className="material-symbols-outlined text-primary">location_on</span>
                         Store Address
@@ -114,7 +114,7 @@ const SocialManagement: React.FC = () => {
                                 rows={2}
                                 value={address.text}
                                 onChange={(e) => setAddress({ ...address, text: e.target.value })}
-                                className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none"
+                                className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none dark:text-white"
                                 placeholder="123 Coffee St, Brew City"
                             />
                         </div>
@@ -125,7 +125,7 @@ const SocialManagement: React.FC = () => {
                                 type="text"
                                 value={address.mapsUrl}
                                 onChange={(e) => setAddress({ ...address, mapsUrl: e.target.value })}
-                                className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none"
+                                className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 transition-all outline-none dark:text-white"
                                 placeholder="https://goo.gl/maps/..."
                             />
                         </div>

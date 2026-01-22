@@ -29,6 +29,8 @@ const App: React.FC = () => {
     document.documentElement.style.setProperty('--color-brand-name', themeConfig.brandNameColor);
     document.documentElement.style.setProperty('--font-main', themeConfig.fontFamily);
     document.documentElement.style.setProperty('--font-size-base', `${appConfig.font_size_base}px`);
+    // Also set font-size directly on html element so rem-based Tailwind classes scale
+    document.documentElement.style.fontSize = `${appConfig.font_size_base}px`;
   }, [themeConfig, appConfig]);
 
   const visibleProducts = useMemo(() => {

@@ -68,11 +68,11 @@ const MenuManagement: React.FC = () => {
     };
 
     return (
-        <div className="space-y-8">
-            <div className="flex justify-between items-center">
+        <div className="space-y-6 md:space-y-8">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <div>
-                    <h2 className="text-3xl font-serif font-bold text-stone-text dark:text-white">Menu Items</h2>
-                    <p className="text-stone-light dark:text-stone-500 mt-1">Add, edit or remove food and drinks from your café.</p>
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-text dark:text-white">Menu Items</h2>
+                    <p className="text-sm text-stone-light dark:text-stone-500 mt-1">Add, edit or remove food and drinks from your café.</p>
                 </div>
                 <button
                     onClick={() => {
@@ -86,7 +86,7 @@ const MenuManagement: React.FC = () => {
                         });
                         setIsModalOpen(true);
                     }}
-                    className="bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center gap-2 shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all"
+                    className="w-full sm:w-auto bg-primary text-white px-6 py-3 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all text-sm md:text-base"
                 >
                     <span className="material-symbols-outlined">add</span>
                     <span>Add New Item</span>
@@ -98,69 +98,117 @@ const MenuManagement: React.FC = () => {
                     <div className="w-10 h-10 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
                 </div>
             ) : (
-                <div className="bg-white dark:bg-stone-900 rounded-[32px] border border-stone-100 dark:border-stone-800 overflow-hidden">
-                    <table className="w-full text-left border-collapse">
-                        <thead>
-                            <tr className="bg-stone-50/50 dark:bg-stone-800/30 border-b border-stone-100 dark:border-stone-800">
-                                <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Item</th>
-                                <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Category</th>
-                                <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Price</th>
-                                <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 text-right">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-stone-50 dark:divide-stone-800">
-                            {products.map((product) => (
-                                <tr key={product.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/20 transition-colors">
-                                    <td className="px-8 py-6">
-                                        <div className="flex items-center gap-4">
-                                            {product.image ? (
-                                                <img src={product.image} className="w-12 h-12 rounded-xl object-cover" alt="" />
-                                            ) : (
-                                                <div className="w-12 h-12 rounded-xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
-                                                    <span className="material-symbols-outlined text-stone-300 dark:text-stone-600">image</span>
-                                                </div>
-                                            )}
-                                            <div>
-                                                <div className="font-bold text-stone-text dark:text-white capitalize">{product.name}</div>
-                                                <div className="text-xs text-stone-light dark:text-stone-500 line-clamp-1 mt-0.5">{product.description}</div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td className="px-8 py-6">
-                                        <span className="px-3 py-1 bg-stone-100 dark:bg-stone-800 rounded-full text-[10px] font-bold uppercase tracking-wider text-stone-light dark:text-stone-400">
-                                            {categories.find(c => c.id === product.category)?.label || product.category}
-                                        </span>
-                                    </td>
-                                    <td className="px-8 py-6 font-bold text-primary">RM{product.price.toFixed(2)}</td>
-                                    <td className="px-8 py-6 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button
-                                                onClick={() => handleEdit(product)}
-                                                className="w-10 h-10 rounded-xl flex items-center justify-center text-stone-light hover:bg-primary/10 hover:text-primary transition-all"
-                                            >
-                                                <span className="material-symbols-outlined text-xl">edit</span>
-                                            </button>
-                                            <button
-                                                onClick={() => handleDelete(product.id)}
-                                                className="w-10 h-10 rounded-xl flex items-center justify-center text-stone-light hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 transition-all"
-                                            >
-                                                <span className="material-symbols-outlined text-xl">delete</span>
-                                            </button>
-                                        </div>
-                                    </td>
+                <div className="space-y-4">
+                    {/* Desktop View (Table) */}
+                    <div className="hidden md:block bg-white dark:bg-stone-900 rounded-[32px] border border-stone-100 dark:border-stone-800 overflow-hidden">
+                        <table className="w-full text-left border-collapse">
+                            <thead>
+                                <tr className="bg-stone-50/50 dark:bg-stone-800/30 border-b border-stone-100 dark:border-stone-800">
+                                    <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Item</th>
+                                    <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Category</th>
+                                    <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500">Price</th>
+                                    <th className="px-8 py-5 text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 text-right">Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody className="divide-y divide-stone-50 dark:divide-stone-800">
+                                {products.map((product) => (
+                                    <tr key={product.id} className="hover:bg-stone-50/50 dark:hover:bg-stone-800/20 transition-colors">
+                                        <td className="px-8 py-4">
+                                            <div className="flex items-center gap-4">
+                                                {product.image ? (
+                                                    <img src={product.image} className="w-12 h-12 rounded-xl object-cover" alt="" />
+                                                ) : (
+                                                    <div className="w-12 h-12 rounded-xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
+                                                        <span className="material-symbols-outlined text-stone-300 dark:text-stone-600">image</span>
+                                                    </div>
+                                                )}
+                                                <div>
+                                                    <div className="font-bold text-stone-text dark:text-white capitalize">{product.name}</div>
+                                                    <div className="text-xs text-stone-light dark:text-stone-500 line-clamp-1 mt-0.5">{product.description}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td className="px-8 py-4">
+                                            <span className="px-3 py-1 bg-stone-100 dark:bg-stone-800 rounded-full text-[10px] font-bold uppercase tracking-wider text-stone-light dark:text-stone-400">
+                                                {categories.find(c => c.id === product.category)?.label || product.category}
+                                            </span>
+                                        </td>
+                                        <td className="px-8 py-4 font-bold text-primary">RM{product.price.toFixed(2)}</td>
+                                        <td className="px-8 py-4 text-right">
+                                            <div className="flex justify-end gap-2">
+                                                <button
+                                                    onClick={() => handleEdit(product)}
+                                                    className="w-10 h-10 rounded-xl flex items-center justify-center text-stone-light hover:bg-primary/10 hover:text-primary transition-all"
+                                                >
+                                                    <span className="material-symbols-outlined text-xl">edit</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleDelete(product.id)}
+                                                    className="w-10 h-10 rounded-xl flex items-center justify-center text-stone-light hover:bg-red-50 dark:hover:bg-red-900/10 hover:text-red-600 transition-all"
+                                                >
+                                                    <span className="material-symbols-outlined text-xl">delete</span>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {/* Mobile View (Cards) */}
+                    <div className="grid grid-cols-1 gap-4 md:hidden">
+                        {products.map((product) => (
+                            <div key={product.id} className="bg-white dark:bg-stone-900 p-4 rounded-3xl border border-stone-100 dark:border-stone-800 space-y-4">
+                                <div className="flex items-center gap-4">
+                                    {product.image ? (
+                                        <img src={product.image} className="w-16 h-16 rounded-2xl object-cover" alt="" />
+                                    ) : (
+                                        <div className="w-16 h-16 rounded-2xl bg-stone-100 dark:bg-stone-800 flex items-center justify-center">
+                                            <span className="material-symbols-outlined text-stone-400">image</span>
+                                        </div>
+                                    )}
+                                    <div className="flex-1 min-w-0">
+                                        <div className="flex justify-between items-start">
+                                            <h4 className="font-bold text-stone-text dark:text-white truncate">{product.name}</h4>
+                                            <span className="text-primary font-bold">RM{product.price.toFixed(2)}</span>
+                                        </div>
+                                        <p className="text-xs text-stone-light dark:text-stone-500 line-clamp-1">{product.description}</p>
+                                        <div className="mt-2">
+                                            <span className="px-2 py-0.5 bg-stone-100 dark:bg-stone-800 rounded-full text-[9px] font-bold uppercase tracking-wider text-stone-light dark:text-stone-400">
+                                                {categories.find(c => c.id === product.category)?.label || product.category}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="flex gap-2 pt-2 border-t border-stone-50 dark:border-stone-800">
+                                    <button
+                                        onClick={() => handleEdit(product)}
+                                        className="flex-1 h-11 bg-stone-50 dark:bg-stone-800 rounded-xl flex items-center justify-center gap-2 text-stone-text dark:text-white font-bold text-sm"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">edit</span>
+                                        Edit
+                                    </button>
+                                    <button
+                                        onClick={() => handleDelete(product.id)}
+                                        className="flex-1 h-11 bg-red-50 dark:bg-red-900/10 rounded-xl flex items-center justify-center gap-2 text-red-600 font-bold text-sm"
+                                    >
+                                        <span className="material-symbols-outlined text-lg">delete</span>
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             )}
 
             {/* Edit Modal */}
             {isModalOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
-                    <div className="w-full max-w-2xl bg-white dark:bg-stone-900 rounded-[32px] shadow-2xl overflow-hidden border border-stone-100 dark:border-stone-800 animate-in zoom-in-95 duration-200">
-                        <div className="p-8 border-b border-stone-50 dark:border-stone-800 flex justify-between items-center">
-                            <h3 className="text-2xl font-serif font-bold text-stone-text dark:text-white">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center md:p-6 bg-black/40 backdrop-blur-sm animate-in fade-in duration-200">
+                    <div className="w-full h-full md:h-auto md:max-w-2xl bg-white dark:bg-stone-900 md:rounded-[32px] shadow-2xl overflow-hidden border border-stone-100 dark:border-stone-800 animate-in zoom-in-95 duration-200 flex flex-col">
+                        <div className="p-6 md:p-8 border-b border-stone-50 dark:border-stone-800 flex justify-between items-center shrink-0">
+                            <h3 className="text-xl md:text-2xl font-serif font-bold text-stone-text dark:text-white">
                                 {editingProduct?.id ? 'Edit Item' : 'New Menu Item'}
                             </h3>
                             <button
@@ -171,8 +219,8 @@ const MenuManagement: React.FC = () => {
                             </button>
                         </div>
 
-                        <form onSubmit={handleSave} className="p-8 space-y-6 max-h-[70vh] overflow-y-auto hide-scrollbar">
-                            <div className="grid grid-cols-2 gap-6">
+                        <form onSubmit={handleSave} className="p-6 md:p-8 space-y-6 overflow-y-auto hide-scrollbar flex-1">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 ml-1">Name</label>
                                     <input
@@ -243,7 +291,7 @@ const MenuManagement: React.FC = () => {
                                 </div>
 
                                 {!editingProduct?.secondaryPrice ? (
-                                    <div className="grid grid-cols-2 gap-6">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div className="space-y-2">
                                             <label className="text-[10px] font-bold text-stone-light/60 ml-1">Option Name (Optional)</label>
                                             <input
@@ -286,7 +334,7 @@ const MenuManagement: React.FC = () => {
                                     </div>
                                 ) : (
                                     <div className="space-y-4">
-                                        <div className="grid grid-cols-2 gap-6 p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl border border-stone-100 dark:border-stone-800">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl border border-stone-100 dark:border-stone-800">
                                             <div className="space-y-2">
                                                 <label className="text-[10px] font-bold text-stone-light/60 ml-1">Option 1 Name (e.g. Hot)</label>
                                                 <input
@@ -313,7 +361,7 @@ const MenuManagement: React.FC = () => {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-6 p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl border border-stone-100 dark:border-stone-800">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl border border-stone-100 dark:border-stone-800">
                                             <div className="space-y-2">
                                                 <label className="text-[10px] font-bold text-stone-light/60 ml-1">Option 2 Name (e.g. Cold)</label>
                                                 <input
@@ -361,32 +409,32 @@ const MenuManagement: React.FC = () => {
 
                             <div className="space-y-2">
                                 <label className="text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 ml-1">Image {uploading && <span className="text-primary animate-pulse ml-2 text-[10px]">Uploading...</span>}</label>
-                                <div className="flex gap-4 items-center">
+                                <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                                     <input
                                         type="text"
                                         placeholder="Image URL"
                                         value={editingProduct?.image || ''}
                                         onChange={(e) => setEditingProduct({ ...editingProduct, image: e.target.value })}
-                                        className="flex-1 bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary/30 dark:text-white transition-all outline-none"
+                                        className="w-full sm:flex-1 bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary/30 dark:text-white transition-all outline-none"
                                     />
-                                    <label className="cursor-pointer bg-stone-100 dark:bg-stone-800 h-[52px] px-6 rounded-2xl flex items-center justify-center hover:bg-stone-200 dark:hover:bg-stone-700 transition-all font-bold text-xs">
+                                    <label className="w-full sm:w-auto cursor-pointer bg-stone-100 dark:bg-stone-800 h-[52px] px-6 rounded-2xl flex items-center justify-center hover:bg-stone-200 dark:hover:bg-stone-700 transition-all font-bold text-xs shrink-0">
                                         Upload
                                         <input type="file" multiple className="hidden" onChange={handleFileChange} />
                                     </label>
                                 </div>
                             </div>
 
-                            <div className="pt-4 flex gap-4">
+                            <div className="pt-4 flex flex-col sm:flex-row gap-4 shrink-0">
                                 <button
                                     type="button"
                                     onClick={() => setIsModalOpen(false)}
-                                    className="flex-1 px-6 py-4 rounded-2xl font-bold bg-stone-50 dark:bg-stone-800 text-stone-light hover:text-stone-text dark:hover:text-white transition-all"
+                                    className="order-2 sm:order-1 flex-1 px-6 py-4 rounded-2xl font-bold bg-stone-50 dark:bg-stone-800 text-stone-light hover:text-stone-text dark:hover:text-white transition-all"
                                 >
                                     Cancel
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-[2] px-6 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all"
+                                    className="order-1 sm:order-2 flex-[2] px-6 py-4 rounded-2xl font-bold bg-primary text-white shadow-lg shadow-primary/20 hover:bg-opacity-90 transition-all"
                                 >
                                     Save Item
                                 </button>

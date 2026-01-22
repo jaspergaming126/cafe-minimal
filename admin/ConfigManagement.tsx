@@ -52,13 +52,22 @@ const ConfigManagement: React.FC = () => {
         }
 
         setSaving(true);
-        const success = await updateThemeConfig({
+
+        // Save theme config (colors and font family)
+        const themeSuccess = await updateThemeConfig({
             primaryColor: themeConfig.primaryColor,
             brandNameColor: themeConfig.brandNameColor,
             fontFamily: themeConfig.fontFamily
         });
+
+        // Also save app config (which includes font_size_base)
+        let appSuccess = true;
+        if (appConfig) {
+            appSuccess = await updateAppConfig({ font_size_base: appConfig.font_size_base });
+        }
+
         setSaving(false);
-        if (success) {
+        if (themeSuccess && appSuccess) {
             alert('Theme settings saved successfully!');
         } else {
             alert('Failed to save Theme settings. Please ensure Migration 004 is applied.');
@@ -97,7 +106,7 @@ const ConfigManagement: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Identity & Content */}
-                    <div className="bg-white dark:bg-stone-900 rounded-[32px] p-8 border border-stone-100 dark:border-stone-800 space-y-6">
+                    <div className="bg-white dark:bg-stone-900 rounded-[32px] p-6 md:p-8 border border-stone-100 dark:border-stone-800 space-y-6">
                         <h3 className="text-xl font-bold flex items-center gap-3">
                             <span className="material-symbols-outlined text-primary">storefront</span>
                             Identity
@@ -197,14 +206,14 @@ const ConfigManagement: React.FC = () => {
                     </div>
 
                     {/* Theme & Visuals */}
-                    <div className="bg-white dark:bg-stone-900 rounded-[32px] p-8 border border-stone-100 dark:border-stone-800 space-y-6">
+                    <div className="bg-white dark:bg-stone-900 rounded-[32px] p-6 md:p-8 border border-stone-100 dark:border-stone-800 space-y-6">
                         <h3 className="text-xl font-bold flex items-center gap-3">
                             <span className="material-symbols-outlined text-primary">palette</span>
                             Theme & Visuals
                         </h3>
 
                         <form onSubmit={handleThemeSave} className="space-y-5">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 ml-1">Primary Color</label>
                                     <div className="flex gap-2">

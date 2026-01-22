@@ -24,8 +24,8 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     };
 
     return (
-        <div className="flex min-h-screen items-center justify-center p-6">
-            <div className="w-full max-w-md bg-white dark:bg-stone-900 rounded-[32px] shadow-2xl p-10 border border-stone-100 dark:border-stone-800">
+        <div className="flex min-h-screen items-center justify-center p-4 md:p-6">
+            <div className="w-full max-w-md bg-white dark:bg-stone-900 rounded-[32px] shadow-2xl p-6 md:p-10 border border-stone-100 dark:border-stone-800">
                 <div className="flex flex-col items-center mb-10">
                     <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-4">
                         <span className="material-symbols-outlined text-primary text-3xl">admin_panel_settings</span>
