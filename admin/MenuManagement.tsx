@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Product, CategoryConfig, ProductOption } from '../types';
 import { fetchAllProducts, fetchCategories, createProduct, updateProduct, deleteProduct } from '../services/api';
-import { uploadMultipleToR2 } from '../services/r2';
+import { uploadImages } from '../services/storage';
 
 const MenuManagement: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -60,7 +60,7 @@ const MenuManagement: React.FC = () => {
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
         setUploading(true);
-        const urls = await uploadMultipleToR2(Array.from(e.target.files));
+        const urls = await uploadImages(Array.from(e.target.files));
         if (urls.length > 0) {
             setEditingProduct({ ...editingProduct, image: urls[0] }); // Just take the first one for now
         }

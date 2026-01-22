@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { fetchAppConfig, fetchThemeConfig, updateAppConfig, updateThemeConfig, AppConfig, ThemeConfig } from '../services/api';
-import { uploadToR2 } from '../services/r2';
+import { uploadImage } from '../services/storage';
 import { isSupabaseConfigured } from '../lib/supabase';
 
 const ConfigManagement: React.FC = () => {
@@ -68,7 +68,7 @@ const ConfigManagement: React.FC = () => {
     const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
         setUploading(true);
-        const url = await uploadToR2(e.target.files[0]);
+        const url = await uploadImage(e.target.files[0]);
         if (url) {
             setAppConfig({ ...appConfig!, hero_image: url });
         }
@@ -78,7 +78,7 @@ const ConfigManagement: React.FC = () => {
     const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (!e.target.files || e.target.files.length === 0) return;
         setUploading(true);
-        const url = await uploadToR2(e.target.files[0]);
+        const url = await uploadImage(e.target.files[0]);
         if (url) {
             setAppConfig({ ...appConfig!, logo_url: url });
         }
