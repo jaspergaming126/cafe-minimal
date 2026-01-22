@@ -19,7 +19,13 @@ export async function uploadToR2(file: File): Promise<string | null> {
         return null;
     }
 
-    const fileName = `${Date.now()}-${file.name}`;
+    // Sanitize filename: remove special chars, replace spaces with dashes, lower case
+    const cleanName = file.name
+        .toLowerCase()
+        .replace(/[^a-z0-9.]/g, '-') // Replace non-alphanumeric (except dot) with dash
+        .replace(/-+/g, '-');        // Replace multiple dashes with single dash
+
+    const fileName = `${Date.now()}-${cleanName}`;
 
     try {
         const command = new PutObjectCommand({

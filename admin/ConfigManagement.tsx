@@ -127,7 +127,7 @@ const ConfigManagement: React.FC = () => {
                                     <div className="flex-1 space-y-2">
                                         <label className="inline-block bg-white dark:bg-stone-800 border border-stone-100 dark:border-stone-700 px-4 py-2 rounded-xl text-xs font-bold cursor-pointer hover:bg-stone-50 transition-all">
                                             Upload Logo
-                                            <input type="file" className="hidden" onChange={handleLogoUpload} accept="image/*" />
+                                            <input type="file" className="hidden" onChange={handleLogoUpload} />
                                         </label>
                                         <input
                                             type="text"
@@ -306,7 +306,7 @@ const ConfigManagement: React.FC = () => {
                             </div>
                             <label className="w-full h-[52px] bg-stone-100 dark:bg-stone-800 rounded-2xl flex items-center justify-center font-bold text-sm cursor-pointer hover:bg-stone-200 dark:hover:bg-stone-700 transition-all">
                                 Change Background
-                                <input type="file" className="hidden" onChange={handleBackgroundUpload} accept="image/*" />
+                                <input type="file" className="hidden" onChange={handleBackgroundUpload} />
                             </label>
                         </div>
                         <div className="md:col-span-2 space-y-4">

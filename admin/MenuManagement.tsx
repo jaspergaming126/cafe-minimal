@@ -371,7 +371,7 @@ const MenuManagement: React.FC = () => {
                                     />
                                     <label className="cursor-pointer bg-stone-100 dark:bg-stone-800 h-[52px] px-6 rounded-2xl flex items-center justify-center hover:bg-stone-200 dark:hover:bg-stone-700 transition-all font-bold text-xs">
                                         Upload
-                                        <input type="file" multiple className="hidden" onChange={handleFileChange} accept="image/*" />
+                                        <input type="file" multiple className="hidden" onChange={handleFileChange} />
                                     </label>
                                 </div>
                             </div>
