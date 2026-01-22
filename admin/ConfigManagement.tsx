@@ -15,8 +15,10 @@ const ConfigManagement: React.FC = () => {
         loadData();
     }, []);
 
-    const loadData = async () => {
-        setLoading(true);
+    const loadData = async (isRefresh = false) => {
+        if (!isRefresh && appConfig === null) {
+            setLoading(true);
+        }
         const [app, theme] = await Promise.all([fetchAppConfig(), fetchThemeConfig()]);
         setAppConfig(app);
         setThemeConfig(theme);

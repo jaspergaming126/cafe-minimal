@@ -12,8 +12,10 @@ const SocialManagement: React.FC = () => {
         loadData();
     }, []);
 
-    const loadData = async () => {
-        setLoading(true);
+    const loadData = async (isRefresh = false) => {
+        if (!isRefresh && (social.instagram === '' || address.text === '')) {
+            setLoading(true);
+        }
         const [s, a] = await Promise.all([fetchSocialConfig(), fetchAddressConfig()]);
         setSocial(s);
         setAddress(a);

@@ -14,8 +14,10 @@ const CategoryManagement: React.FC = () => {
         loadData();
     }, []);
 
-    const loadData = async () => {
-        setLoading(true);
+    const loadData = async (isRefresh = false) => {
+        if (!isRefresh && categories.length === 0) {
+            setLoading(true);
+        }
         const data = await fetchCategories();
         setCategories(data);
         setLoading(false);
@@ -35,7 +37,7 @@ const CategoryManagement: React.FC = () => {
         if (window.confirm('Are you sure you want to delete this category? This will affect products assigned to it.')) {
             const success = await deleteCategory(id);
             if (success) {
-                loadData();
+                loadData(true);
             } else {
                 alert('Failed to delete category.');
             }
@@ -59,7 +61,7 @@ const CategoryManagement: React.FC = () => {
         const success = await updateCategoryOrder(newCategories);
         if (!success) {
             alert('Failed to update order. Refreshing...');
-            loadData();
+            loadData(true);
         }
         setOrdering(false);
     };
@@ -94,7 +96,7 @@ const CategoryManagement: React.FC = () => {
         setSaving(false);
         if (result) {
             setIsModalOpen(false);
-            loadData();
+            loadData(true);
         } else {
             alert('Failed to save category. Check console for errors.');
         }

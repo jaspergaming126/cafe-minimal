@@ -16,8 +16,10 @@ const MenuManagement: React.FC = () => {
         loadData();
     }, []);
 
-    const loadData = async () => {
-        setLoading(true);
+    const loadData = async (isRefresh = false) => {
+        if (!isRefresh && (products.length === 0 || categories.length === 0)) {
+            setLoading(true);
+        }
         const [p, c] = await Promise.all([fetchAllProducts(), fetchCategories()]);
         setProducts(p);
         setCategories(c.filter(cat => cat.id !== 'all'));
@@ -32,7 +34,7 @@ const MenuManagement: React.FC = () => {
     const handleDelete = async (id: string) => {
         if (window.confirm('Are you sure you want to delete this item?')) {
             const success = await deleteProduct(id);
-            if (success) loadData();
+            if (success) loadData(true);
         }
     };
 
@@ -54,7 +56,7 @@ const MenuManagement: React.FC = () => {
             }
         }
         setIsModalOpen(false);
-        loadData();
+        loadData(true);
     };
 
     const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
