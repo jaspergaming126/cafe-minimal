@@ -48,7 +48,11 @@ const Hero: React.FC<HeroProps> = ({ appConfig }) => {
               transform: `translateY(${blurAmount * 2}px)`
             }}
           >
-            <p className="text-white/80 font-display text-[10px] font-bold tracking-[0.2em] uppercase mb-1 drop-shadow-md">Established 2024</p>
+            {appConfig.show_established && (
+              <p className="text-white/80 font-display text-[10px] font-bold tracking-[0.2em] uppercase mb-1 drop-shadow-md">
+                {appConfig.established_text || 'Established 2024'}
+              </p>
+            )}
             <p className="text-white font-serif text-3xl sm:text-4xl font-bold italic drop-shadow-md">{appConfig.hero_message}</p>
           </div>
         )}

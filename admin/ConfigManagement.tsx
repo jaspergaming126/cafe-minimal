@@ -169,6 +169,17 @@ const ConfigManagement: React.FC = () => {
                                 />
                             </div>
 
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold uppercase tracking-widest text-stone-light/60 dark:text-stone-500 ml-1">Established Text</label>
+                                <input
+                                    type="text"
+                                    value={appConfig?.established_text || ''}
+                                    onChange={(e) => setAppConfig({ ...appConfig!, established_text: e.target.value })}
+                                    placeholder="e.g. Established 2024"
+                                    className="w-full bg-stone-50 dark:bg-stone-900/50 border-stone-100 dark:border-stone-800 rounded-2xl px-5 py-3.5 text-sm focus:ring-4 focus:ring-primary/10 focus:border-primary/30 dark:text-white transition-all outline-none"
+                                />
+                            </div>
+
                             <div className="flex items-center justify-between p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl">
                                 <span className="text-sm font-medium">Show Logo</span>
                                 <label className="relative inline-flex items-center cursor-pointer">
@@ -189,6 +200,19 @@ const ConfigManagement: React.FC = () => {
                                         type="checkbox"
                                         checked={appConfig?.show_hero_message ?? true}
                                         onChange={(e) => setAppConfig({ ...appConfig!, show_hero_message: e.target.checked })}
+                                        className="sr-only peer"
+                                    />
+                                    <div className="w-11 h-6 bg-stone-200 peer-focus:outline-none dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-primary rounded-full"></div>
+                                </label>
+                            </div>
+
+                            <div className="flex items-center justify-between p-4 bg-stone-50/50 dark:bg-stone-800/30 rounded-2xl">
+                                <span className="text-sm font-medium">Show Established Text</span>
+                                <label className="relative inline-flex items-center cursor-pointer">
+                                    <input
+                                        type="checkbox"
+                                        checked={appConfig?.show_established ?? true}
+                                        onChange={(e) => setAppConfig({ ...appConfig!, show_established: e.target.checked })}
                                         className="sr-only peer"
                                     />
                                     <div className="w-11 h-6 bg-stone-200 peer-focus:outline-none dark:bg-stone-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-stone-600 peer-checked:bg-primary rounded-full"></div>

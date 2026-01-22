@@ -25,6 +25,8 @@ export interface AppConfig {
     logo_url?: string;
     hero_message: string;
     show_hero_message: boolean;
+    established_text: string;
+    show_established: boolean;
     hero_image: string;
     font_size_base: number;
     footer_text: string;
@@ -328,6 +330,8 @@ export async function fetchAppConfig(): Promise<AppConfig> {
             logo_url: undefined,
             hero_message: 'Slow moments, fast memories.',
             show_hero_message: true,
+            established_text: 'Established 2024',
+            show_established: true,
             hero_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAgKYCGlRnEUypygIPNNU1z94BlZS-Dg4sP7WXICTk63X58y31l4hiGB3Ve6NLxNYV6HOu7GvZbvzGt5ggyeZ4vhckjaGdIywe9PtQdTwyBDqFXrbxDRP9ChDAYjRaX3a1CMopGDvlQhujG4K_eWvuElvWiaDyoX00E6mImijxecDGsQRetkqc-p2V7QWwgo_Oj-9Xyy4asklRhteUtgpYLfhwCPbfacwvMOTuJPksQTffIxI2Z54f1OdC9Wi93pBFlME50nBcLAY',
             font_size_base: 16,
             footer_text: '© 2026 CRÈME.ge. All rights reserved.'
@@ -343,6 +347,8 @@ export async function fetchAppConfig(): Promise<AppConfig> {
             logo_url: undefined,
             hero_message: 'Slow moments, fast memories.',
             show_hero_message: true,
+            established_text: 'Established 2024',
+            show_established: true,
             hero_image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCAgKYCGlRnEUypygIPNNU1z94BlZS-Dg4sP7WXICTk63X58y31l4hiGB3Ve6NLxNYV6HOu7GvZbvzGt5ggyeZ4vhckjaGdIywe9PtQdTwyBDqFXrbxDRP9ChDAYjRaX3a1CMopGDvlQhujG4K_eWvuElvWiaDyoX00E6mImijxecDGsQRetkqc-p2V7QWwgo_Oj-9Xyy4asklRhteUtgpYLfhwCPbfacwvMOTuJPksQTffIxI2Z54f1OdC9Wi93pBFlME50nBcLAY',
             font_size_base: 16,
             footer_text: '© 2026 CRÈME.ge. All rights reserved.'
@@ -354,6 +360,8 @@ export async function fetchAppConfig(): Promise<AppConfig> {
         logo_url: data.logo_url,
         hero_message: data.hero_message,
         show_hero_message: data.show_hero_message,
+        established_text: data.established_text || 'Established 2024',
+        show_established: data.show_established ?? true,
         hero_image: data.hero_image,
         font_size_base: data.font_size_base,
         footer_text: data.footer_text || '© 2026 CRÈME.ge. All rights reserved.'
